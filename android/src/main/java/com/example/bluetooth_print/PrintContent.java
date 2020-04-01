@@ -71,6 +71,7 @@ public class PrintContent {
                         esc.addPrintQRCode();
                   }else if("image".equals(type)){
                         byte[] bytes = Base64.decode(content, Base64.DEFAULT);
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                         int imageWidth = width==0?Math.min(576,bitmap.getWidth()):width;
                         esc.addRastBitImage(bitmap, imageWidth, 0);
                   }

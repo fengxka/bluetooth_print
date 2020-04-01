@@ -71,8 +71,8 @@ public class PrintContent {
                         esc.addPrintQRCode();
                   }else if("image".equals(type)){
                         byte[] bytes = Base64.decode(content, Base64.DEFAULT);
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        esc.addRastBitImage(bitmap, 576, 0);
+                        int imageWidth = width==0?Math.min(576,bitmap.getWidth()):width;
+                        esc.addRastBitImage(bitmap, imageWidth, 0);
                   }
 
                   if(linefeed == 1){
@@ -146,7 +146,8 @@ public class PrintContent {
                   }else if("image".equals(type)){
                         byte[] bytes = Base64.decode(content, Base64.DEFAULT);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        tsc.addBitmap(x, y, LabelCommand.BITMAP_MODE.OVERWRITE, 300, bitmap);
+                        int imageWidth = width==0?Math.min(300,bitmap.getWidth()):width;
+                        tsc.addBitmap(x, y, LabelCommand.BITMAP_MODE.OVERWRITE, imageWidth, bitmap);
                   }
             }
 

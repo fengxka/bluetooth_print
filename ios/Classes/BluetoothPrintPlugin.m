@@ -168,14 +168,12 @@
         }else if([@"image" isEqualToString:type]){
             NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:content options:0];
             UIImage *image = [UIImage imageWithData:decodeData];
-            NSNumber *imageWidth = 300;
-            if(width>0){
-                imageWidth = width;
-                if(imageWidth>300){
-                    imageWidth=300;
-                }
+            NSNumber *maxWidth = [NSNumber numberWithInt:300];
+            NSNumber *imageWidth = width;
+            if([imageWidth compare:maxWidth]!=NSOrderedAscending){
+                imageWidth=maxWidth;
             }
-            [command addBitmapwithX:[x intValue] withY:[y intValue] withMode:0 withWidth:imageWidth withImage:image];
+            [command addBitmapwithX:[x intValue] withY:[y intValue] withMode:0 withWidth:[imageWidth intValue] withImage:image];
         }
        
     }
@@ -224,14 +222,12 @@
         }else if([@"image" isEqualToString:type]){
             NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:content options:0];
             UIImage *image = [UIImage imageWithData:decodeData];
-            NSNumber *imageWidth = 576;
-            if(width>0){
-                imageWidth = width;
-                if(imageWidth>576){
-                    imageWidth=576;
-                }
+            NSNumber *maxWidth = [NSNumber numberWithInt:576];
+            NSNumber *imageWidth = width;
+            if([imageWidth compare:maxWidth]!=NSOrderedAscending){
+                imageWidth=maxWidth;
             }
-            [command addOriginrastBitImage:image width:imageWidth];
+            [command addOriginrastBitImage:image width:[imageWidth intValue]];
         }
         
         if([linefeed isEqualToNumber:@1]){

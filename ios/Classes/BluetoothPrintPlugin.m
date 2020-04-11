@@ -168,7 +168,14 @@
         }else if([@"image" isEqualToString:type]){
             NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:content options:0];
             UIImage *image = [UIImage imageWithData:decodeData];
-            [command addBitmapwithX:[x intValue] withY:[y intValue] withMode:0 withWidth:300 withImage:image];
+            NSNumber *imageWidth = 300;
+            if(width>0){
+                imageWidth = width;
+                if(imageWidth>300){
+                    imageWidth=300;
+                }
+            }
+            [command addBitmapwithX:[x intValue] withY:[y intValue] withMode:0 withWidth:imageWidth withImage:image];
         }
        
     }
@@ -217,7 +224,14 @@
         }else if([@"image" isEqualToString:type]){
             NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:content options:0];
             UIImage *image = [UIImage imageWithData:decodeData];
-            [command addOriginrastBitImage:image width:576];
+            NSNumber *imageWidth = 576;
+            if(width>0){
+                imageWidth = width;
+                if(imageWidth>576){
+                    imageWidth=576;
+                }
+            }
+            [command addOriginrastBitImage:image width:imageWidth];
         }
         
         if([linefeed isEqualToNumber:@1]){
